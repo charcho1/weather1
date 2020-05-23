@@ -24,10 +24,24 @@ class SearchInput extends React.Component{
         return <Text>{this.state.text}</Text>
     }
     */
-    handleChangeText=(text)=> {
-        this.setState({text})
+    handleChangeText=(newLocation)=> {
+        this.props.location = newLocation;
     }
-    
+    handleSubmitEditing =() => {
+        const {onSubmit} = this.props;
+        const {text} = this.state;
+
+        if (!text) return;
+        onSubmit (text);
+        this.setState ({text: ''});
+    }
+    /*above: 
+    check if this.state.text is not blank (which means the user has typed something into
+the field), and if that’s the case:
+1. Run an onSubmit function obtained from the component’s props. We pass text as an
+argument here.
+2. Clear the text property in state using this.setState()
+     */
     
     render () {
         const {placeholder} = this.props;

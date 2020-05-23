@@ -5,9 +5,22 @@ import { StyleSheet, Text, View,KeyboardAvoidingView, Platform, TextInput, Image
 import SearchInput from "./components/SearchInput"
 import getImageForWeather from './utils/getImageForWeather'
 
-export default function App() {
-  render () {
-  const location = 'San Francisco'
+//export default function App() must be changed to below in order to define classes
+export default class App extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state ={
+      location: 'San Francisco'
+    }
+  }
+
+  handleUpdateLocation =(city) => {
+    this.setState ({
+      location:city,
+    })
+  }
+    render () {
+      const{location}=this.state
     //Now we must have a way for child component to retrieve the inputted location and communciate this to the App
     //we must put render () on top because we must define and pass in {location} within the return
     return (
@@ -28,7 +41,8 @@ export default function App() {
             placeholder = "Search any city"
             placeholderTextColor="white"
             style = {styles.textInput}
-            clearButtonMode="always" />
+            clearButtonMode="always"
+            onSubmit={this.handleUpdateLocation} />
             </View>
             
       </KeyboardAvoidingView>
