@@ -24,8 +24,8 @@ class SearchInput extends React.Component{
         return <Text>{this.state.text}</Text>
     }
     */
-    handleChangeText=(newLocation)=> {
-        this.props.location = newLocation;
+    handleChangeText=text=> {
+        this.setState({text});
     }
     handleSubmitEditing =() => {
         const {onSubmit} = this.props;
